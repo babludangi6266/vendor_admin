@@ -1,0 +1,192 @@
+.vendor-table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table-header {
+  padding: 20px 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.table-header h3 {
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.vendor-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vendor-table th {
+  background: #f8f9fa;
+  padding: 15px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
+  white-space: nowrap;
+}
+
+.vendor-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.vendor-row:hover {
+  background-color: #f8f9fa;
+}
+
+.vendor-name {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.vendor-name:hover .name-text {
+  color: #667eea;
+  text-decoration: underline;
+}
+
+.name-text {
+  font-weight: 600;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.category-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.category-badge.electrician {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.category-badge.plumber {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.category-badge.carpenter {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.category-badge.cleaner {
+  background: #fce4ec;
+  color: #c2185b;
+}
+
+.category-badge.painter {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.category-badge.technician {
+  background: #e0f2f1;
+  color: #00796b;
+}
+
+.category-badge.gardener {
+  background: #e8f5e8;
+  color: #388e3c;
+}
+
+.category-badge.mason {
+  background: #fff8e1;
+  color: #ffa000;
+}
+
+.rate {
+  font-weight: 600;
+  color: #28a745;
+}
+
+.no-rate {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.view-details-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+  background: #5a6fd8;
+  transform: translateY(-1px);
+}
+
+.no-vendors {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.no-data-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.no-vendors h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.no-vendors p {
+  color: #666;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .vendor-table {
+    font-size: 0.9rem;
+  }
+  
+  .vendor-table th,
+  .vendor-table td {
+    padding: 10px 8px;
+  }
+  
+  .table-header {
+    padding: 15px 20px;
+  }
+  
+  .category-badge {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+  
+  .view-details-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vendor-table-container {
+    margin: 0 -10px;
+    border-radius: 0;
+  }
+}

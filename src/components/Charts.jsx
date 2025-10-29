@@ -12,7 +12,7 @@ import {
   Pie,
   Cell
 } from 'recharts';
-import './Charts.css';
+import '../styles/Charts.css';
 
 const Charts = ({ vendors }) => {
   // Prepare data for charts

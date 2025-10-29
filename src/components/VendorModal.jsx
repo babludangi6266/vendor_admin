@@ -1,5 +1,5 @@
 import React from 'react';
-import './VendorModal.css';
+import '../styles/VendorModal.css';
 
 const VendorModal = ({ vendor, onClose }) => {
   if (!vendor) return null;
@@ -94,10 +94,10 @@ const VendorModal = ({ vendor, onClose }) => {
                 <label>Registration Date</label>
                 <p>{formatDate(vendor.registrationDate)}</p>
               </div>
-              <div className="detail-item">
-                <label>Vendor ID</label>
-                <p className="vendor-id">{vendor._id}</p>
-              </div>
+             <div className="detail-item">
+  <label>Vendor ID</label>
+  <p className="vendor-id">{vendor.id}</p> 
+</div>
             </div>
           </div>
         </div>

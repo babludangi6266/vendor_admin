@@ -1,5 +1,5 @@
 import React from 'react';
-import './StatsCards.css';
+import '../styles/StatsCards.css';
 
 const StatsCards = ({ vendors }) => {
   const totalVendors = vendors.length;

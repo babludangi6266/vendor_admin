@@ -1,39 +1,58 @@
+/* Charts.css */
 .charts-section {
-  margin-bottom: 40px;
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
 }
 
 .charts-section h2 {
-  color: #333;
-  margin-bottom: 20px;
   font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--dark-color);
+  text-align: center;
 }
 
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
 }
 
 .chart-card {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
 }
 
 .chart-card h3 {
-  color: #333;
-  margin-bottom: 20px;
   font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
   text-align: center;
+  color: var(--dark-color);
 }
 
-@media (max-width: 768px) {
+/* Responsive Charts */
+@media (max-width: 1024px) {
   .charts-grid {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 768px) {
+  .charts-section {
+    padding: 1rem;
+  }
+  
+  .charts-grid {
+    gap: 1rem;
+  }
   
   .chart-card {
-    padding: 20px;
+    padding: 1rem;
   }
 }

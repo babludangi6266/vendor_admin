@@ -1,0 +1,362 @@
+/* CandidateModal.css & CompanyModal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark-color);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--gray-color);
+  transition: var(--transition);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: #f8f9fa;
+  color: var(--danger-color);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.details-section {
+  margin-bottom: 2rem;
+}
+
+.details-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail-item label {
+  display: block;
+  font-weight: 600;
+  color: var(--gray-color);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.detail-item p {
+  color: var(--dark-color);
+  word-break: break-word;
+}
+
+/* Photo & Document Sections */
+.photo-section,
+.document-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+}
+
+.photo-display,
+.document-display {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.candidate-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: var(--border-radius);
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: var(--shadow);
+}
+
+.document-preview {
+  flex: 1;
+}
+
+.document-image {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: var(--border-radius);
+  cursor: zoom-in;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.document-image:hover {
+  transform: scale(1.02);
+}
+
+.image-preview,
+.pdf-preview,
+.file-preview {
+  text-align: center;
+}
+
+.pdf-icon,
+.file-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.document-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.view-full-btn,
+.download-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.view-full-btn {
+  background: var(--primary-color);
+  color: white;
+}
+
+.download-btn {
+  background: var(--success-color);
+  color: white;
+}
+
+.view-full-btn:hover,
+.download-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+/* Full Document Viewer */
+.full-document-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 2rem;
+}
+
+.full-document-content {
+  background: white;
+  border-radius: var(--border-radius);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-document-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.full-document-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.full-document-image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.full-document-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-modal-btn {
+  padding: 0.75rem 2rem;
+  background: var(--gray-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.close-modal-btn:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+/* Responsive Modals */
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 1rem;
+    max-height: 95vh;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .photo-display,
+  .document-display {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .candidate-photo {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .document-actions {
+    justify-content: center;
+  }
+  
+  .full-document-overlay {
+    padding: 1rem;
+  }
+  
+  .full-document-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-header {
+    padding: 1rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.25rem;
+  }
+  
+  .details-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .photo-section,
+  .document-section {
+    padding: 1rem;
+  }
+  
+  .document-actions {
+    flex-direction: column;
+  }
+  
+  .view-full-btn,
+  .download-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

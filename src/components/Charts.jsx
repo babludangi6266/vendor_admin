@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import {
   BarChart,
@@ -14,46 +16,79 @@ import {
 } from 'recharts';
 import '../styles/Charts.css';
 
-const Charts = ({ vendors }) => {
-  // Prepare data for charts
-  const categoryData = vendors.reduce((acc, vendor) => {
-    const category = vendor.serviceCategory;
-    acc[category] = (acc[category] || 0) + 1;
-    return acc;
-  }, {});
+const Charts = ({ candidates, companies, dataType }) => {
+  let barChartData = [];
+  let pieChartData = [];
+  let statusChartData = [];
 
-  const barChartData = Object.entries(categoryData).map(([name, count]) => ({
-    name: name.charAt(0).toUpperCase() + name.slice(1),
-    vendors: count
-  }));
+  if (dataType === 'candidates') {
+    const categoryData = candidates.reduce((acc, candidate) => {
+      const category = candidate.category;
+      acc[category] = (acc[category] || 0) + 1;
+      return acc;
+    }, {});
 
-  const pieChartData = Object.entries(categoryData).map(([name, count]) => ({
-    name: name.charAt(0).toUpperCase() + name.slice(1),
-    value: count
-  }));
+    barChartData = Object.entries(categoryData).map(([name, count]) => ({
+      name: name.length > 10 ? name.substring(0, 10) + '...' : name,
+      candidates: count
+    }));
 
-  const rateTypeData = vendors.reduce((acc, vendor) => {
-    const type = vendor.rateType || 'not-specified';
-    acc[type] = (acc[type] || 0) + 1;
-    return acc;
-  }, {});
+    pieChartData = Object.entries(categoryData).map(([name, count]) => ({
+      name: name.length > 10 ? name.substring(0, 10) + '...' : name,
+      value: count
+    }));
 
-  const rateTypeChartData = Object.entries(rateTypeData).map(([name, count]) => ({
-    name: name === 'hourly' ? 'Hourly' : name === 'per-job' ? 'Per Job' : 'Not Specified',
-    value: count
-  }));
+    const statusData = candidates.reduce((acc, candidate) => {
+      const status = candidate.registrationStatus || 'pending';
+      acc[status] = (acc[status] || 0) + 1;
+      return acc;
+    }, {});
 
-  // Colors for charts
+    statusChartData = Object.entries(statusData).map(([name, count]) => ({
+      name: name.charAt(0).toUpperCase() + name.slice(1),
+      value: count
+    }));
+  } else {
+    const categoryData = companies.reduce((acc, company) => {
+      if (Array.isArray(company.categories)) {
+        company.categories.forEach(category => {
+          acc[category] = (acc[category] || 0) + 1;
+        });
+      }
+      return acc;
+    }, {});
+
+    barChartData = Object.entries(categoryData).map(([name, count]) => ({
+      name: name.length > 10 ? name.substring(0, 10) + '...' : name,
+      companies: count
+    })).slice(0, 10);
+
+    pieChartData = Object.entries(categoryData).map(([name, count]) => ({
+      name: name.length > 10 ? name.substring(0, 10) + '...' : name,
+      value: count
+    })).slice(0, 6);
+
+    const statusData = companies.reduce((acc, company) => {
+      const status = company.registrationStatus || 'pending';
+      acc[status] = (acc[status] || 0) + 1;
+      return acc;
+    }, {});
+
+    statusChartData = Object.entries(statusData).map(([name, count]) => ({
+      name: name.charAt(0).toUpperCase() + name.slice(1),
+      value: count
+    }));
+  }
+
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'];
 
   return (
     <div className="charts-section">
-      <h2>Analytics Overview</h2>
+      <h2>Analytics Overview - {dataType === 'candidates' ? 'Candidates' : 'Companies'}</h2>
       
       <div className="charts-grid">
-        {/* Bar Chart - Vendors by Category */}
         <div className="chart-card">
-          <h3>Vendors by Service Category</h3>
+          <h3>{dataType === 'candidates' ? 'Candidates by Category' : 'Companies by Required Categories'}</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={barChartData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -61,12 +96,15 @@ const Charts = ({ vendors }) => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="vendors" fill="#8884d8" name="Number of Vendors" />
+              <Bar 
+                dataKey={dataType === 'candidates' ? 'candidates' : 'companies'} 
+                fill="#8884d8" 
+                name={dataType === 'candidates' ? 'Number of Candidates' : 'Number of Companies'} 
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Pie Chart - Category Distribution */}
         <div className="chart-card">
           <h3>Category Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -90,13 +128,12 @@ const Charts = ({ vendors }) => {
           </ResponsiveContainer>
         </div>
 
-        {/* Pie Chart - Rate Type Distribution */}
         <div className="chart-card">
-          <h3>Rate Type Distribution</h3>
+          <h3>Registration Status</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
-                data={rateTypeChartData}
+                data={statusChartData}
                 cx="50%"
                 cy="50%"
                 labelLine={false}
@@ -105,7 +142,7 @@ const Charts = ({ vendors }) => {
                 fill="#8884d8"
                 dataKey="value"
               >
-                {rateTypeChartData.map((entry, index) => (
+                {statusChartData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[(index + 2) % COLORS.length]} />
                 ))}
               </Pie>
@@ -119,3 +156,4 @@ const Charts = ({ vendors }) => {
 };
 
 export default Charts;
+

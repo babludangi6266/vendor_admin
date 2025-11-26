@@ -35,7 +35,7 @@ const CompanyModal = ({ company, onClose }) => {
       return company.businessDocument;
     } else {
       // For local development - adjust the base URL as needed
-      const baseUrl = 'https://vendor-backend-4v8l.onrender.com';
+      const baseUrl = 'https://vendor-backend-5zph.onrender.com';
       return `${baseUrl}/uploads/companies/${company.businessDocument}`;
     }
   };

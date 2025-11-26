@@ -76,18 +76,7 @@ const CandidateTable = ({ candidates, onCandidateClick, onCandidateDelete, onCan
       
       <div className="table-wrapper">
         <table className="candidate-table">
-          {/* <thead>
-            <tr>
-              <th>Name</th>
-              {currentAdmin.role === 'super_admin' && <th>Mobile</th>}
-              {currentAdmin.role === 'super_admin' && <th>Email</th>}
-              <th>Category</th>
-              <th>Job Location</th>
-              <th>Status</th>
-              <th>Registered On</th>
-              {currentAdmin.role === 'super_admin' && <th>Actions</th>}
-            </tr>
-          </thead> */}
+       
           <thead>
   <tr>
     <th>Photo</th>
@@ -108,12 +97,10 @@ const CandidateTable = ({ candidates, onCandidateClick, onCandidateDelete, onCan
                 <td className="photo-thumbnail">
         {candidate.photo ? (
           <img 
-            src={`https://vendor-backend-4v8l.onrender.com/uploads/candidates/${candidate.photo}`} 
+            src={`https://vendor-backend-5zph.onrender.com/uploads/candidates/${candidate.photo}`} 
             alt="Candidate" 
             className="thumbnail-img"
-            onError={(e) => {
-              e.target.src = '/default-avatar.png'; // Fallback image
-            }}
+           
           />
         ) : (
           <div className="no-photo">No Photo</div>

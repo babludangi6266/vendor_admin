@@ -33,7 +33,7 @@ const CandidateModal = ({ candidate, onClose }) => {
       return candidate.photo;
     } else {
       // For local development - adjust the base URL as needed
-      const baseUrl = 'https://vendor-backend-4v8l.onrender.com';
+      const baseUrl = 'https://vendor-backend-5zph.onrender.com';
       return `${baseUrl}/uploads/candidates/${candidate.photo}`;
     }
   };
